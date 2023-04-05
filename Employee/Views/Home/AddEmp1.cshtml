@@ -1,0 +1,74 @@
+﻿ 
+@model Employee.Views.Home.AddEmp1Model
+@{
+}
+
+
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger">
+
+    </div>
+    @*  <div class="mb-3">
+            <label class="col-form-label" asp-for="Addemp.ID">EmployeeID</label>
+            <input type="number" id="AddedEmpID" name="Email" asp-for="Addemp.ID" class="form-control" />
+            <span asp-validation-for="Addemp.ID" class="text-danger"></span>
+        </div>
+    *@
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.EmpId">Emp Id</label>
+        <input type="text" id="AddedEmpId" name="EmpId" asp-for="Addemp.EmpId" class="form-control" />
+        <span asp-validation-for="Addemp.EmpId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.Name">Name</label>
+        <input type="text" id="AddedEmpName" name="Name" asp-for="Addemp.Name" class="form-control" />
+        <span asp-validation-for="Addemp.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.Designation">Designation</label>
+        <select class="col-form-label" id="AddedEmpDesignation" name="Designation" asp-for="Addemp.Designation">
+            <option value="Manager">Manager</option>
+            <option value="Employee">Employee</option>
+            <option value="HR">HR</option>
+        </select>
+        <span asp-validation-for="Addemp.Designation" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.Email">Email</label>
+        <input type="email" id="AddedEmpemail" name="Email" asp-for="Addemp.Email" class="form-control" />
+        <span asp-validation-for="Addemp.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.Pass">Password</label>
+        <input type="password" id="AddedEmppass" name="Pass" asp-for="Addemp.Pass" class="form-control" />
+        <span asp-validation-for="Addemp.Pass" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.Phone">Phone</label>
+        <input type="text" id="AddedEmpphone" name="Phone" asp-for="Addemp.Phone" class="form-control" />
+        <span asp-validation-for="Addemp.Phone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="Addemp.MID">Manager ID</label>
+        <input type="number" id="AddedEmpmid" name="MID" asp-for="Addemp.MID" class="form-control" />
+        <span asp-validation-for="Addemp.MID" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary ">ADD</button>
+</form>
+
+
+
+
+@*<select class="form-control" id="designation" name="designation">
+    <option value="Manager">Manager</option>
+    <option value="Developer">Developer</option>
+    <option value="Designer">Designer</option>
+</select>*@

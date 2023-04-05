@@ -1,0 +1,43 @@
+﻿@model List<Employee.Models.AppraisalModel>
+
+@{
+    ViewData["Title"] = "ViewPreviousApp";
+}
+
+<h1>ViewPreviousApp</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>EmpId</th>
+            <th>Objectives</th>
+            <th>Employee_Comment1</th>
+            <th>Manager_Comment1</th>
+            <th>Rating</th>
+            <th>TechCompetency</th>
+            <th>BehaviouralCompetency</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var appraisal in Model) {
+        <tr>
+            <td>@appraisal.ID</td>
+            <td>@appraisal.EmpId</td>
+            <td>@appraisal.Obj1</td>
+            <td>@appraisal.E_Comment1</td>
+            <td>@appraisal.M_Comment1</td>
+            <td>@appraisal.Rating1</td>
+            <td>@appraisal.TechCompetency</td>
+            <td>@appraisal.BehaviouralCompetency</td>
+            <td>@appraisal.StartDate</td>
+            <td>@appraisal.EndDate</td>
+        </tr>
+}
+    </tbody>
+</table>

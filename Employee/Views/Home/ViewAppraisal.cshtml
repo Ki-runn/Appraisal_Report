@@ -1,0 +1,70 @@
+﻿<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="card">
+            <div class="card-body bg-info">
+                <h5 class="card-title">New Appraisal</h5>
+                @{  if (ViewBag.data != null)
+                    {
+                        foreach (var i in ViewBag.data)
+                        {
+                            if (i.E_Comment1 == null) {
+                    <p>Hey <b>@ViewBag.Name</b>, An appraisal form is created for you <b>Created on @i.StartDate and valid till @i.EndDate </b>Click here to Enter <a href="~/Home/AppraisalCreate">Comments</a> </p> }
+
+
+                        } }
+                    else
+                    {
+                    <p>No New Appraisal Form..</p>  }  }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="card">
+            <div class="card-body bg-danger">
+                <h5 class="card-title">Pending Appraisal</h5>
+
+                @{ if (ViewBag.data != null)
+                    {
+                        foreach (var i in ViewBag.data)
+                        {
+                            if (i.E_Comment1 != null && i.M_Comment1==null)
+                            {
+            <p>Hoorayy! <b>@ViewBag.Name</b>, Your appraisal is submitted and is  yet to be evaluated <b>By your Manager </b>Click here to <a href="~/Home/ViewPreviousApp">See Details</a> </p> }
+
+
+    }
+}
+else
+{
+            <p>No previous Appraisal Form..</p> } }
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="card">
+            <div class="card-body bg-success">
+                <h5 class="card-title">Previous Appraisal</h5>
+                @{ if (ViewBag.data != null)
+                    {
+                        foreach (var i in ViewBag.data)
+                        {
+                            if (i.M_Comment1 != null) {
+            <p>Congrats <b>@ViewBag.Name</b>, You appraisal is succesfully evaluated <b>By your Manager </b>Click here to <a href="~/Home/ViewPreviousApp">See Details</a> </p> }
+
+
+                            }
+                        } 
+                    else
+                    {
+            <p>No previous Appraisal Form..</p> } }
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,205 @@
+﻿@using Employee.CompetencyFolder;
+@model Employee.Models.AppraisalModel
+
+@{
+    //ViewData["Title"] = "AppraisalCreate";
+}
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        var empid = $("#idEmpId").val();
+        $('#idEmpId').on('change', function () {
+            $.ajax({
+                url: "Home/GetEmpInfo",
+                dataType: "json",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                data: { empid: empid },
+                success: function (result) {
+                    $("#E_Comment").val(result.E_Cooment);
+
+                },
+                error: function (result) {
+
+                }
+            })
+        });
+    });
+
+</script>*@
+
+@{var eid = ViewBag.empid;}
+@{ var tcomp = ViewBag.tcomp;}
+@{ var bcomp = ViewBag.bcomp;}
+@{ var obj = ViewBag.obj;}
+
+<h1>AppraisalForm</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AppraisalCreate" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @{ if (ViewData["Design"].Equals("Manager"))
+                {
+                    <div class="form-group">
+                        <select class="form-control" asp-for="EmpId" id="idEmpId">
+
+                            @{
+                                if (ViewBag.data != null)
+                                {
+                                    foreach (var i in ViewBag.data)
+                                    {
+                                        <option value="@i.EmpId">@i.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="EmpId" class="text-danger"></span>
+                    </div>
+                }
+                else
+
+                { <div class="form-group">
+                        <label asp-for="EmpId" class="control-label"></label>
+                        <input readonly asp-for="EmpId" class="form-control" value="@eid" />
+                        <span asp-validation-for="EmpId" class="text-danger"></span>
+                    </div> }
+            }
+
+
+
+        <div style="display: flex; justify-content: space-between;flex-direction:column">
+            <div style="display: flex; align-items: center;">
+                <label asp-for="Obj1" class="control-label">Objectives</label>
+                @{ if (ViewData["Design"].Equals("Manager"))
+                    {
+                        <input asp-for="Obj1" style="margin-right: 10px;" value="@obj" />
+                    }
+                    else
+                    {<input readonly asp-for="Obj1" style="margin-right: 10px;" value="@obj" /> }
+                }
+                <span asp-validation-for="Obj1" class="text-danger"></span>
+            </div>
+
+            <div style="display: flex; align-items: center;flex-direction:column">
+                <label for="exampleFormControlSelect2" class="control-label">Tech Competency</label>
+                @{ if (ViewData["Design"].Equals("Manager"))
+                    {
+                        <select asp-items="Html.GetEnumSelectList<TechCompetency>()" class="form-control" asp-for="TechCompetency"></select>
+                    }
+                    else
+                    {<input readonly asp-for="TechCompetency" style="margin-right: 10px;" value="@tcomp" /> } }
+            </div>
+
+            <div style="display: flex; align-items: center; flex-direction: column">
+                <label for="exampleFormControlSelect2" class="control-label"> Behavioural Competency</label>
+                @{ if (ViewData["Design"].Equals("Manager"))
+                    {
+                        <select asp-items="Html.GetEnumSelectList<BehavioralCompetency>()" class="form-control" asp-for="BehaviouralCompetency"></select>
+                    }
+                    else
+                    {<input readonly asp-for="BehaviouralCompetency" style="margin-right: 10px;" value="@bcomp" /> } }
+            </div>
+
+
+
+            <div style="display: flex; align-items: center; flex-direction: column">
+                <label asp-for="E_Comment1" class="control-label">E-comment</label>
+                @{ if (ViewData["Design"].Equals("Employee"))
+                    {
+                        <input asp-for="E_Comment1" style="margin-right: 10px;" />
+                    }
+                    else
+                    {<input readonly style="margin-right: 10px;" />}
+                }
+
+                <span asp-validation-for="E_Comment1" class="text-danger"></span>
+            </div>
+
+
+            <div style="display: flex; align-items: center; flex-direction: column">
+                <label asp-for="M_Comment1" class="control-label">M-comment</label>
+                @{ if (ViewData["Design"].Equals("Manager"))
+                    {
+
+                        <input asp-for="M_Comment1" style="margin-right: 10px;" />
+                    }
+                    else
+                    {<input readonly style="margin-right: 10px;" /> }
+                }
+                <span asp-validation-for="M_Comment1" class="text-danger"></span>
+            </div>
+            <div style="display: flex; align-items: center; flex-direction: column">
+                <label asp-for="Rating1" class="control-label">Rating</label>
+                @{ if (ViewData["Design"].Equals("Manager"))
+                    {
+                        <input asp-for="Rating1" style="margin-right: 10px;" type="range" min="1" max="5" />
+                    }
+                    else
+                    {<input readonly style="margin-right: 10px;" /> }
+                }
+                <span asp-validation-for="Rating1" class="text-danger"></span>
+            </div>
+            @{if (ViewData["Design"].Equals("Manager"))
+                {
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; align-items: center;">
+                            <label for="exampleFormControlTextareastartdate" class="control-label">Start Date</label>
+                            <input type="date" class="form-control" style="margin-right: 10px;" asp-for="StartDate">
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <label for="exampleFormControlTextareaenddate" class="control-label">End Date</label>
+                            <input type="date" class="form-control" style="margin-right: 10px;" asp-for="EndDate">
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-dark mt-5" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a onclick="history.go(-1) ">Go Back</a>
+</div>
+
+ 
+@*   <div class="form-group">
+        <label asp-for="EmpId" class="control-label"></label>
+        <input asp-for="EmpId" class="form-control" />
+        <span asp-validation-for="EmpId" class="text-danger"></span>
+    </div>         *@
+ 
+
+@*<div class="form-group">
+        <label asp-for="MID" class="control-label"></label>
+        <input asp-for="MID" class="form-control" />
+        <span asp-validation-for="MID" class="text-danger"></span>
+    </div>*@
+
+
+
+@* @Html.DropDownListFor(Model => Model.EmpId, new SelectList(ViewData["EmpList"] as SelectList, "EmpId", "Name"), "Select an employee", new { @class = "form-control" })*@
+ 
+@* <div style="display: flex; align-items: center;">
+        <label asp-for="TechCompetency" class="control-label"></label>
+        <input asp-for="TechCompetency" style="margin-right: 10px;" />
+        <span asp-validation-for="TechCompetency" class="text-danger"></span>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <label asp-for="BehaviouralCompetency" class="control-label"></label>
+        <input asp-for="BehaviouralCompetency" style="margin-right: 10px;" />
+        <span asp-validation-for="BehaviouralCompetency" class="text-danger"></span>
+    </div>*@
+
+@*    @Html.DropDownList("EmpList", null, "Select an employee", new { @id = "EmpId", @name = "EmpId", @class = "form-control" })*@

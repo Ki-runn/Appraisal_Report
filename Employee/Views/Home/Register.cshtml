@@ -1,0 +1,40 @@
+﻿
+@model Employee.Views.RegisterModel
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Register";
+}
+@{ if (ViewBag.ErrorMessage != null)
+    {
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        } }
+
+
+<img src="~/Images/Incadea.jpg" />
+<div class="container mt-5">
+    <div class="row-justify-content allign-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4"
+             <h1 class="mb-3">Login</h1>
+
+             <form method="post">
+                 <div asp-validation-summary="All" class="text-danger">
+
+                 </div>
+                 <div class="mb-3">
+                     <label class="col-form-label" asp-for="Model.Email">Email Address</label>
+                     <input type="text" id="txtEmail" name="Email" asp-for="Model.Email" class="form-control" />
+                     <span asp-validation-for="Model.Email" class="text-danger"></span>
+                 </div>
+
+                 <div class="mb-3">
+                     <label class="col-form-label" asp-for="Model.Password">Password</label>
+                     <input type="password" id="txtPassword" name="Password" asp-for="Model.Password" class="form-control" />
+                     <span asp-validation-for="Model.Password" class="text-danger"></span>
+                 </div>
+                 <div class="mb-3">
+                     <button type="submit" class="btn btn-primary">Login</button>
+                     @*ViewBag.error*@
+</form>
+    </div>
+    </div>
+

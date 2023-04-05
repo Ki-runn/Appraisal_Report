@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/HomePage.cshtml";
+    ViewBag.Title = "Home";
+}
+@{if (ViewBag.success != null)
+    {
+        <div class="alert alert-success">@ViewBag.success</div>
+    }
+
+}
+@*@{
+        if(TempData["Success"] !=null)
+                {
+        <div class="alert alert-success">@TempData["Success"] </div>
+                }
+    }*@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Designation of the person is: @ViewData["Designation"]</h3>
+            <h3 class="alert-success">Name of the person is: @ViewData["Name"]</h3>
+            <h3 class="text-danger">Employee ID: @ViewData["ID"]</h3>
+        </div>
+    </div>
+</div>
+
+
+@{ if (ViewData["Designation"].Equals("Manager") || ViewData["Designation"].Equals("Employee"))
+    {
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Two Card Pages</title>
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css"
+                  integrity="sha512-MjKxPXbh2+VyYj8u80hxSfbhT1TNV7g9O4sKFl7/4LJ4uudtPjwz8TXm0hOhEzALou3qXlW0ql+Q2yJsiLxuWA=="
+                  crossorigin="anonymous"
+                  referrerpolicy="no-referrer" />
+        </head>
+        <body>
+
+            <div class="container">
+                <div class="row">
+
+                    @{if (ViewData["Designation"].Equals("Manager"))
+                        {
+
+                            <div class="col-md-6">
+                                <div class="card"style="background-color: #2b2525; color: #f5f5f5;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Employees Appraisals</h5>
+                                        <p class="card-text">
+                                            Here you can create or edit your Employees Appraisals
+                                        </p>
+                                        <a href="~/Home/AppraisalCreate" class="btn btn-primary">Edit/Create New Appraisal +</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body"style="background-color: #ffffff; color: #000000;">
+                                <h5 class="card-title">My Appraisals</h5>
+                                <p class="card-text">
+                                    My personal Appraisals created from managers
+                                </p>
+                                <a asp-action="ViewAppraisal" asp-controller="Home" class="btn btn-primary">View My Appraisal</a>
+                                @{if (TempData["mcomment"] != null)
+                                    {
+                                <a asp-action="ViewPreviousApp" asp-controller="Home" class="btn btn-primary">View My previous Appraisal</a>
+                                        }
+                                  else { <a asp-action="Error" asp-controller="Home" class="btn btn-primary">View My previous Appraisal</a>}
+                                    }
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Bootstrap JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"
+                    integrity="sha512-Td//7n/K4zGKqjs4/bZz65Df7vR0ajhF2Kj8Ny1cAtmENl4+zp0j3G4fRUZdX9ZmKf6UBa0PsdHIZw++s/1GSw=="
+                    crossorigin="anonymous"
+                    referrerpolicy="no-referrer"></script>
+        </body>
+    </html>
+}
+}
+
+@{ if (ViewData["Designation"].Equals("HR"))
+    {
+        <a asp-controller="Home" asp-action="AddEmp1" class="btn btn-secondary">Add an Employee +</a>
+
+    }
+}
+
+
+
+
+
+
+
